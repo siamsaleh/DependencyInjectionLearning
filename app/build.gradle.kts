@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
 }
 
 android {
@@ -45,4 +46,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    /*implementation("com.google.dagger:dagger:2.47")
+    kapt("com.google.dagger:dagger-compiler:2.46.1")*/ // kotlin annotation processing tool
+
+    val daggerVersion = "2.51.1"
+    implementation ("com.google.dagger:dagger:$daggerVersion")
+    /*annotationProcessor("com.google.dagger:dagger-compiler:$daggerVersion")*/
+    kapt ("com.google.dagger:dagger-compiler:$daggerVersion")
 }

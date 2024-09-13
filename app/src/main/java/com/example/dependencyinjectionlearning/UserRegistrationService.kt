@@ -1,6 +1,8 @@
 package com.example.dependencyinjectionlearning
 
-class UserRegistrationService(
+import javax.inject.Inject
+
+class UserRegistrationService @Inject constructor( // This inject will tell how to create this object
     private val userRepository: UserRepository,
     private val emailService: EmailService
 ) {

@@ -1,20 +1,22 @@
 package com.example.dependencyinjectionlearning
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val userRepository = UserRepository()
-        val emailService = EmailService()
+        val component = DaggerUserRegistrationComponent.builder().build()
 
-        val userRegistrationService = UserRegistrationService(userRepository, emailService)
+        val userRegistrationService = component.getUserRegistrationService()
+        val emailService = component.getEmailService()
+
         userRegistrationService.registerUser("test@gmail.com", "111111")
     }
+
+    // @InjectConstructor tells the Component how to create the object
 }
