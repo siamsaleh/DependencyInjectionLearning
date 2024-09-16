@@ -11,6 +11,12 @@ import javax.inject.Inject
 @AndroidEntryPoint // For Activity Class
 class MainActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var loggerService1: LoggerService
+
+    @Inject
+    lateinit var loggerService2: LoggerService
+
     /*@Inject
     lateinit var userRepository: UserRepository*/
 
