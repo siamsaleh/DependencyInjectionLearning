@@ -5,11 +5,18 @@ import javax.inject.Inject
 
 const val TAG = "UserRepository"
 
-class UserRepository @Inject constructor(
-    private val loggerService: LoggerService // Constructor Injection
-) {
+interface UserRepository{
+    fun saveUser(email: String, password: String)
+}
 
-    fun saveUser(email: String, password: String) {
-        loggerService.log("saveUser: User Saved in DB")
+class SQLRepository @Inject constructor() : UserRepository{
+    override fun saveUser(email: String, password: String) {
+        Log.d(TAG, "saveUser in SQL: $email, $password")
+    }
+}
+
+class FirebaseRepository @Inject constructor() : UserRepository{
+    override fun saveUser(email: String, password: String) {
+        Log.d(TAG, "saveUser in Firebase: $email, $password")
     }
 }
